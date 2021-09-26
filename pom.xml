@@ -10,6 +10,7 @@
     <modules>
         <module>holidayrequest</module>
         <module>flowable-spring-boot-rest-api</module>
+        <module>configuration</module>
     </modules>
     <packaging>pom</packaging>
 
