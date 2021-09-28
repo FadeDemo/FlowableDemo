@@ -11,6 +11,7 @@
         <module>holidayrequest</module>
         <module>flowable-spring-boot-rest-api</module>
         <module>configuration</module>
+        <module>flowable-api</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -60,6 +61,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-bpmn-layout</artifactId>
+                <version>${flowable-version}</version>
             </dependency>
 
         </dependencies>
