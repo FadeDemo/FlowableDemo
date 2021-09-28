@@ -2,20 +2,47 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="processEngineConfigurationTest" class="org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration">
-<!--    <bean id="processEngineConfiguration" class="org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration">-->
+<!--    <bean id="processEngineConfigurationTest" class="org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration">-->
+    <bean id="processEngineConfiguration" class="org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration">
 
-        <property name="jdbcUrl" value="jdbc:h2:mem:flowable;DB_CLOSE_DELAY=1000" />
-        <property name="jdbcDriver" value="org.h2.Driver" />
-        <property name="jdbcUsername" value="sa" />
-        <property name="jdbcPassword" value="" />
+<!--        <property name="jdbcUrl" value="jdbc:h2:mem:flowable;DB_CLOSE_DELAY=1000" />-->
+<!--        <property name="jdbcDriver" value="org.h2.Driver" />-->
+<!--        <property name="jdbcUsername" value="sa" />-->
+<!--        <property name="jdbcPassword" value="" />-->
+
+        <property name="dataSource" ref="dataSource" />
 
         <property name="databaseSchemaUpdate" value="true" />
 
         <property name="asyncExecutorActivate" value="false" />
+<!--        <property name="asyncExecutorActivate" value="true" />-->
 
         <property name="mailServerHost" value="mail.my-corp.com" />
         <property name="mailServerPort" value="5025" />
+
+<!--        <property name="eventListeners">-->
+<!--            <list>-->
+<!--                <bean class="org.fade.demo.flowabledemo.configuration.MyEventListener"></bean>-->
+<!--            </list>-->
+<!--        </property>-->
+
+<!--        <property name="typedEventListeners">-->
+<!--            <map>-->
+<!--                <entry key="ENGINE_CREATED">-->
+<!--                    <bean class="org.fade.demo.flowabledemo.configuration.MyEventListener"></bean>-->
+<!--                </entry>-->
+<!--            </map>-->
+<!--        </property>-->
     </bean>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="jdbc:h2:mem:flowable;DB_CLOSE_DELAY=1000" />
+        <property name="driverClassName" value="org.h2.Driver" />
+        <property name="username" value="sa" />
+        <property name="password" value="" />
+        <property name="validationQuery" value="SELECT 1" />
+     </bean>
+
+    <bean id="testEventListener" class="org.fade.demo.flowabledemo.configuration.MyEventListener"></bean>
 
 </beans>

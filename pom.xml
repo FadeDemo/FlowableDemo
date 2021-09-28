@@ -21,6 +21,7 @@
         <h2-version>1.4.200</h2-version>
         <sl4j-version>1.7.32</sl4j-version>
         <jackson-version>2.12.5</jackson-version>
+        <druid-version>1.2.7</druid-version>
     </properties>
 
     <dependencyManagement>
@@ -54,6 +55,13 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson-version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid-version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
