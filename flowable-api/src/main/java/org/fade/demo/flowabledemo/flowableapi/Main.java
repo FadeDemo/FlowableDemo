@@ -133,7 +133,14 @@ public class Main {
         // 查询执行
         List<Execution> executions = runtimeService.createExecutionQuery().list();
         logger.info("Found " + executions.size() + " executions");
+        // 使用ManagementService获取数据库表信息
+        ManagementService managementService = processEngine.getManagementService();
+        String tableName = managementService.getTableName(Task.class);
+        logger.info("Task's tableName is " + tableName);
         TaskService taskService = processEngine.getTaskService();
+        // 使用原生查询
+        List<Task> nativeQueryTasks = taskService.createNativeTaskQuery().sql("select * from " + tableName).list();
+        logger.info("The whole application has " + nativeQueryTasks.size() + " task(s)");
         List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("managers").list();
         logger.info("You have " + tasks.size() + " tasks:");
         for (int i=0; i<tasks.size(); i++) {
