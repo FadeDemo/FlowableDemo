@@ -36,6 +36,9 @@
 
         <serviceTask id="externalSystemCall" name="Enter holidays in external system"
                      flowable:class="org.fade.demo.flowabledemo.flowableapi.CallExternalSystemDelegate"/>
+        <!--测试DynamicBpmnService-->
+<!--        <serviceTask id="externalSystemCall" name="Enter holidays in external system"-->
+<!--                     flowable:class="org.fade.demo.flowabledemo.aaa.CallExternalSystemDelegate"/>-->
         <sequenceFlow sourceRef="externalSystemCall" targetRef="holidayApprovedTask"/>
 
         <userTask id="holidayApprovedTask" name="Holiday approved" flowable:assignee="${employee}" />

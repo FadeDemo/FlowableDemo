@@ -149,6 +149,9 @@ public class Main {
         variables = new HashMap<String, Object>();
         variables.put("approved", approved);
         taskService.complete(task.getId(), variables);
+        // 测试DynamicBpmnService
+//        DynamicBpmnService dynamicBpmnService = processEngine.getDynamicBpmnService();
+//        dynamicBpmnService.changeServiceTaskClassName("externalSystemCall", "org.fade.demo.flowabledemo.flowableapi.CallExternalSystemDelegate");
         // FIXME 输入流为空
         InputStream runtimeProcessDiagramInput = repositoryService.getProcessDiagram(processDefinition.getId());
         List<Task> taskList = taskService.createTaskQuery().taskAssignee(employee).list();
