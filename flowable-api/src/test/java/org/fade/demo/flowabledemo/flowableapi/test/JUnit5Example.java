@@ -15,9 +15,9 @@ import org.slf4j.LoggerFactory;
 
 @FlowableTest
 @ConfigurationResource("flowable.custom.cfg.xml")
-public class Example {
+public class JUnit5Example {
 
-    private static final Logger logger = LoggerFactory.getLogger(Example.class);
+    private static final Logger logger = LoggerFactory.getLogger(JUnit5Example.class);
 
     private ProcessEngine processEngine;
     private RuntimeService runtimeService;
@@ -33,7 +33,7 @@ public class Example {
     @Test
     @Deployment(resources = {"holiday-request.bpmn20.xml"})
 //    void testSimpleProcess() {
-    void testSimpleProcess(@DeploymentId String deploymentId) {
+    void test(@DeploymentId String deploymentId) {
         logger.info("Deployment id is " + deploymentId);
         runtimeService.startProcessInstanceByKey("holidayRequest");
         Task task = taskService.createTaskQuery().singleResult();
