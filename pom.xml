@@ -12,6 +12,7 @@
         <module>flowable-spring-boot-rest-api</module>
         <module>configuration</module>
         <module>flowable-api</module>
+        <module>spring-integration</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -85,6 +86,12 @@
 <!--                <version>${junit3-version}</version>-->
                 <version>${junit4-version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-spring</artifactId>
+                <version>${flowable-version}</version>
             </dependency>
 
         </dependencies>
