@@ -8,11 +8,15 @@
         <property name="transactionManager" ref="transactionManager" />
         <property name="databaseSchemaUpdate" value="true" />
         <!--禁止表达式访问serviceTask1-->
-        <property name="beans">
-            <map>
-                <entry key="serviceTask2" value-ref="serviceTask2" />
-            </map>
-        </property>
+<!--        <property name="beans">-->
+<!--            <map>-->
+<!--                <entry key="serviceTask2" value-ref="serviceTask2" />-->
+<!--            </map>-->
+<!--        </property>-->
+        <!--测试流程定义自动部署-->
+<!--        <property name="deploymentResources" value="classpath:holiday-request.bpmn20.xml" />-->
+        <!--测试设置部署模式-->
+<!--        <property name="deploymentMode" value="single-resource" />-->
     </bean>
 
     <bean id="processEngine" class="org.flowable.spring.ProcessEngineFactoryBean">
@@ -45,5 +49,10 @@
     <bean id="serviceTask1" class="org.fade.demo.flowabledemo.springintegration.ServiceTask" />
 
     <bean id="serviceTask2" class="org.fade.demo.flowabledemo.springintegration.ServiceTask" />
+
+    <!--测试JUnit 4 单元测试-->
+    <bean id="flowableRule" class="org.flowable.engine.test.FlowableRule">
+        <property name="processEngine" ref="processEngine" />
+    </bean>
 
 </beans>
