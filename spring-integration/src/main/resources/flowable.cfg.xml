@@ -4,13 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <bean id="processEngineConfiguration" class="org.flowable.spring.SpringProcessEngineConfiguration">
-<!--        <property name="jdbcUrl" value="jdbc:h2:mem:flowable;DB_CLOSE_DELAY=1000" />-->
-<!--        <property name="jdbcDriver" value="org.h2.Driver" />-->
-<!--        <property name="jdbcUsername" value="sa" />-->
-<!--        <property name="jdbcPassword" value="" />-->
         <property name="dataSource" ref="dataSource" />
         <property name="transactionManager" ref="transactionManager" />
         <property name="databaseSchemaUpdate" value="true" />
+        <!--禁止表达式访问serviceTask1-->
+        <property name="beans">
+            <map>
+                <entry key="serviceTask2" value-ref="serviceTask2" />
+            </map>
+        </property>
     </bean>
 
     <bean id="processEngine" class="org.flowable.spring.ProcessEngineFactoryBean">
@@ -39,5 +41,9 @@
     <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
 
     <tx:annotation-driven />
+
+    <bean id="serviceTask1" class="org.fade.demo.flowabledemo.springintegration.ServiceTask" />
+
+    <bean id="serviceTask2" class="org.fade.demo.flowabledemo.springintegration.ServiceTask" />
 
 </beans>
