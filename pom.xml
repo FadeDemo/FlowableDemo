@@ -13,6 +13,7 @@
         <module>configuration</module>
         <module>flowable-api</module>
         <module>spring-integration</module>
+        <module>spring-boot</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -35,6 +36,12 @@
             <dependency>
                 <groupId>org.flowable</groupId>
                 <artifactId>flowable-engine</artifactId>
+                <version>${flowable-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-spring-boot-starter</artifactId>
                 <version>${flowable-version}</version>
             </dependency>
 
