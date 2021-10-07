@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql:///flowable?characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1120.ypzpoi
+    # 指定数据源或连接池类型
+    type: com.alibaba.druid.pool.DruidDataSource
