@@ -19,9 +19,14 @@ public class MyRestController {
     @Resource
     private MyService myService;
 
+//    @PostMapping(value="/process")
+//    public void startProcessInstance() {
+//        myService.startProcess();
+//    }
+
     @PostMapping(value="/process")
-    public void startProcessInstance() {
-        myService.startProcess();
+    public void startProcessInstance(@RequestBody StartProcessRepresentation startProcessRepresentation) {
+        myService.startProcess(startProcessRepresentation.getAssignee());
     }
 
     @RequestMapping(value="/tasks", method= RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
@@ -57,6 +62,19 @@ public class MyRestController {
             this.name = name;
         }
 
+    }
+
+    static class StartProcessRepresentation {
+
+        private String assignee;
+
+        public String getAssignee() {
+            return assignee;
+        }
+
+        public void setAssignee(String assignee) {
+            this.assignee = assignee;
+        }
     }
 
 }
