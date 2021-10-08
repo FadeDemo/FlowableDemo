@@ -1,9 +1,12 @@
 spring:
+  profiles:
+    # 定义你自己的application-db.yml文件，不然数据库会连接不上
+    active: db
   datasource:
     url: jdbc:mysql:///flowable?characterEncoding=UTF-8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: your-own-username
-    password: your-own-password
+    username: ${mysql-username}
+    password: ${mysql-password}
     # 指定数据源或连接池类型
     type: com.alibaba.druid.pool.DruidDataSource
   jpa:
