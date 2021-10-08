@@ -12,3 +12,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  # fixme: 不起作用
+#  endpoint:
+#    flowable:
+#      enabled: true
