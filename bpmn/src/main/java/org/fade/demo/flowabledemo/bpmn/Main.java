@@ -22,7 +22,8 @@ public class Main {
 
     public static void main(String[] args) {
         Props props = new Props("db.properties");
-        String jdbcUrl = props.getProperty("url");
+//        String jdbcUrl = props.getProperty("ui-url");
+        String jdbcUrl = props.getProperty("java-url");
         String username = props.getProperty("username");
         String password = props.getProperty("password");
         Assert.notBlank(jdbcUrl, "jdbcUrl is illegal");
