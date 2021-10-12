@@ -3,6 +3,7 @@ package org.fade.demo.flowabledemo.bpmn;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.setting.dialect.Props;
 import org.flowable.engine.*;
+import org.flowable.engine.history.HistoricProcessInstance;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.runtime.ProcessInstance;
@@ -53,6 +54,25 @@ public class Main {
         // 查询任务执行人为kermit的任务列表
         List<Task> kermitTasks = taskService.createTaskQuery().taskAssignee("kermit").list();
         logger.info("Kermit has " + kermitTasks.size() + " task(s)");
+        // 完成任务
+//        taskService.complete(tasks.get(0).getId());
+        tasks.forEach(task -> {
+            taskService.complete(task.getId());
+        });
+        kermitTasks = taskService.createTaskQuery().taskAssignee("kermit").list();
+        logger.info("Kermit has " + kermitTasks.size() + " task(s)");
+        tasks = taskService.createTaskQuery().taskCandidateGroup("management").list();
+        logger.info("Management group has " + tasks.size() + " task(s)");
+        tasks.forEach(task -> {
+            taskService.complete(task.getId());
+        });
+        tasks = taskService.createTaskQuery().taskCandidateGroup("management").list();
+        logger.info("Management group has " + tasks.size() + " task(s)");
+        // 验证流程是否结束
+        HistoryService historyService = processEngine.getHistoryService();
+        HistoricProcessInstance historicProcessInstance =
+                historyService.createHistoricProcessInstanceQuery().processInstanceId(processInstance.getProcessInstanceId()).singleResult();
+        logger.info("Process instance end time: " + historicProcessInstance.getEndTime());
     }
 
 }
