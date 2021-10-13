@@ -1,7 +1,8 @@
-package org.fade.demo.flowabledemo.bpmn;
+package org.fade.demo.flowabledemo.bpmn.introduction;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.setting.dialect.Props;
+import org.fade.demo.flowabledemo.bpmn.util.DBUtil;
 import org.flowable.engine.*;
 import org.flowable.engine.history.HistoricProcessInstance;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
@@ -22,25 +23,17 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        Props props = new Props("db.properties");
-//        String jdbcUrl = props.getProperty("ui-url");
-        String jdbcUrl = props.getProperty("java-url");
-        String username = props.getProperty("username");
-        String password = props.getProperty("password");
-        Assert.notBlank(jdbcUrl, "jdbcUrl is illegal");
-        Assert.notBlank(username, "username is illegal");
-        Assert.notNull(password, "password can not be null");
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
-                .setJdbcUrl(jdbcUrl)
-                .setJdbcUsername(username)
-                .setJdbcPassword(password)
+                .setJdbcUrl(DBUtil.getJdbcUrl())
+                .setJdbcUsername(DBUtil.getUsername())
+                .setJdbcPassword(DBUtil.getPassword())
                 .setJdbcDriver("org.h2.Driver")
                 .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
         ProcessEngine processEngine = cfg.buildProcessEngine();
         // 部署流程定义
         RepositoryService repositoryService = processEngine.getRepositoryService();
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("FinancialReportProcess.bpmn20.xml")
+                .addClasspathResource("introduction/FinancialReportProcess.bpmn20.xml")
                 .deploy();
         // 启动流程实例
         RuntimeService runtimeService = processEngine.getRuntimeService();
