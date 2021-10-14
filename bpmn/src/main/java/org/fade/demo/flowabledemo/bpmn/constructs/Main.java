@@ -1,8 +1,6 @@
 package org.fade.demo.flowabledemo.bpmn.constructs;
 
 import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.setting.dialect.Props;
 import org.fade.demo.flowabledemo.bpmn.util.DBUtil;
 import org.flowable.common.engine.impl.identity.Authentication;
 import org.flowable.engine.*;
@@ -46,7 +44,7 @@ public class Main {
                 .addClasspathResource("constructs/reviewSalesLead.bpmn20.xml")
                 .deploy();
         // 启动流程实例
-        Map<String, Object> variables = new HashMap<>();
+        Map<String, Object> variables = new HashMap<>(16);
         variables.put("details", "very interesting");
         variables.put("customerName", "Alfresco");
         RuntimeService runtimeService = processEngine.getRuntimeService();
@@ -63,7 +61,7 @@ public class Main {
         // 处理经理组用户任务
         Task profitabilityTask = taskService.createTaskQuery().taskCandidateGroup("management").processInstanceId(procId).singleResult();
         Assert.isTrue(profitabilityTask.getName().equals("Review profitability"));
-        variables = new HashMap<>();
+        variables = new HashMap<>(16);
         // 设置为信息不足够，走向错误结束事件
         variables.put("notEnoughInformation", true);
         taskService.complete(profitabilityTask.getId(), variables);
@@ -80,7 +78,7 @@ public class Main {
         taskService.complete(reviewTasks.get(0).getId());
         variables.put("notEnoughInformation", false);
         taskService.complete(reviewTasks.get(1).getId(), variables);
-        // 判断引擎是否结束
+        // 判断流程是否结束
         assertProcessEnded(processEngine, procId);
         // 销毁认证用户
         Authentication.setAuthenticatedUserId(null);
