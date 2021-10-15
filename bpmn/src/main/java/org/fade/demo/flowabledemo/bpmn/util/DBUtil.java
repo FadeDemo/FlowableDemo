@@ -11,9 +11,21 @@ public class DBUtil {
 
     private static final Props PROPS = new Props("db.properties");
 
-    public static String getJdbcUrl() {
+    public static String getJavaJdbcUrl() {
 //        String jdbcUrl = PROPS.getProperty("ui-url");
         String jdbcUrl = PROPS.getProperty("java-url");
+        Assert.notBlank(jdbcUrl, "jdbcUrl is illegal");
+        return jdbcUrl;
+    }
+
+    public static String getUiJdbcUrl() {
+        String jdbcUrl = PROPS.getProperty("ui-url");
+        Assert.notBlank(jdbcUrl, "jdbcUrl is illegal");
+        return jdbcUrl;
+    }
+
+    public static String getMemoryJdbcUrl() {
+        String jdbcUrl = PROPS.getProperty("memory-url");
         Assert.notBlank(jdbcUrl, "jdbcUrl is illegal");
         return jdbcUrl;
     }

@@ -1,7 +1,5 @@
 package org.fade.demo.flowabledemo.bpmn.introduction;
 
-import cn.hutool.core.lang.Assert;
-import cn.hutool.setting.dialect.Props;
 import org.fade.demo.flowabledemo.bpmn.util.DBUtil;
 import org.flowable.engine.*;
 import org.flowable.engine.history.HistoricProcessInstance;
@@ -24,7 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
-                .setJdbcUrl(DBUtil.getJdbcUrl())
+                .setJdbcUrl(DBUtil.getJavaJdbcUrl())
                 .setJdbcUsername(DBUtil.getUsername())
                 .setJdbcPassword(DBUtil.getPassword())
                 .setJdbcDriver("org.h2.Driver")

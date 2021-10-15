@@ -21,9 +21,9 @@ import static org.flowable.engine.impl.test.TestHelper.assertProcessEnded;
  * @author fade
  * @date 2021/10/13
  */
-public class Main {
+public class ErrorBoundaryEvent {
 
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger(ErrorBoundaryEvent.class);
 
     public static void main(String[] args) {
         logger.info("开始执行流程");
@@ -31,7 +31,7 @@ public class Main {
         Authentication.setAuthenticatedUserId("kermit");
         // 获取引擎配置
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
-                .setJdbcUrl(DBUtil.getJdbcUrl())
+                .setJdbcUrl(DBUtil.getJavaJdbcUrl())
                 .setJdbcUsername(DBUtil.getUsername())
                 .setJdbcPassword(DBUtil.getPassword())
                 .setJdbcDriver("org.h2.Driver")
