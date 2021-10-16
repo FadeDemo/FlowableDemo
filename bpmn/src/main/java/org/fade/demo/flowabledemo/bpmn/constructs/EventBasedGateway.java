@@ -27,7 +27,10 @@ public class EventBasedGateway {
                 .setJdbcUrl(DBUtil.getMemoryJdbcUrl())
                 .setJdbcUsername(DBUtil.getUsername())
                 .setJdbcDriver("org.h2.Driver")
-                .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+//                .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+                .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE)
+                // 需要开启异步执行器
+                .setAsyncExecutorActivate(true);
         // 获取引擎
         ProcessEngine processEngine = cfg.buildProcessEngine();
         // 部署流程定义
@@ -38,15 +41,14 @@ public class EventBasedGateway {
         // 启动流程实例
         RuntimeService runtimeService = processEngine.getRuntimeService();
         ProcessInstance pi = runtimeService.startProcessInstanceByKey("catchSignal");
-        // fixme 流程无法结束
         // 等2分钟继续执行
-//        try {
-//            Thread.sleep(45000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        assertProcessEnded(processEngine, pi.getProcessInstanceId());
-//        logger.info("Process is finished: " + pi.isEnded());
+        try {
+            Thread.sleep(45000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertProcessEnded(processEngine, pi.getProcessInstanceId());
+        logger.info("Process is finished");
         // 或者发送信号继续执行
 //        runtimeService.signalEventReceived("alert");
 //        TaskService taskService = processEngine.getTaskService();
@@ -58,8 +60,10 @@ public class EventBasedGateway {
 //        logger.info("There is(are) " + tasks.size() + " task(s) currently");
 //        tasks.forEach(task -> {
 //            logger.info("Task's name is " + task.getName());
+//            taskService.complete(task.getId());
 //        });
 //        assertProcessEnded(processEngine, pi.getProcessInstanceId());
+        // TODO: 验证流程引擎即使结束也未修改ProcessInstance的状态
 //        logger.info("Process is finished: " + pi.isEnded());
     }
 
