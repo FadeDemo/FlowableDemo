@@ -1,15 +1,12 @@
-package org.fade.demo.flowabledemo.bpmn.constructs;
+package org.fade.demo.flowabledemo.bpmn.constructs.gateway;
 
 import org.fade.demo.flowabledemo.bpmn.util.DBUtil;
 import org.flowable.engine.*;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.runtime.ProcessInstance;
-import org.flowable.task.api.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 import static org.flowable.engine.impl.test.TestHelper.assertProcessEnded;
 
@@ -36,7 +33,7 @@ public class EventBasedGateway {
         // 部署流程定义
         RepositoryService repositoryService = processEngine.getRepositoryService();
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("constructs/eventBasedGateway.bpmn20.xml")
+                .addClasspathResource("constructs/gateway/eventBasedGateway.bpmn20.xml")
                 .deploy();
         // 启动流程实例
         RuntimeService runtimeService = processEngine.getRuntimeService();

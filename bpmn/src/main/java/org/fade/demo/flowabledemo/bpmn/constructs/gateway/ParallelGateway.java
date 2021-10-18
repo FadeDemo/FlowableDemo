@@ -1,4 +1,4 @@
-package org.fade.demo.flowabledemo.bpmn.constructs;
+package org.fade.demo.flowabledemo.bpmn.constructs.gateway;
 
 import org.fade.demo.flowabledemo.bpmn.util.DBUtil;
 import org.flowable.engine.*;
@@ -30,7 +30,7 @@ public class ParallelGateway {
         // 部署流程定义
         RepositoryService repositoryService = processEngine.getRepositoryService();
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("constructs/parallelGatewayTest.bpmn20.xml")
+                .addClasspathResource("constructs/gateway/parallelGatewayTest.bpmn20.xml")
                 .deploy();
         // 启动流程实例
         RuntimeService runtimeService = processEngine.getRuntimeService();

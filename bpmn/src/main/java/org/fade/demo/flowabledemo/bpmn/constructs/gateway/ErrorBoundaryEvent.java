@@ -1,4 +1,4 @@
-package org.fade.demo.flowabledemo.bpmn.constructs;
+package org.fade.demo.flowabledemo.bpmn.constructs.gateway;
 
 import cn.hutool.core.lang.Assert;
 import org.fade.demo.flowabledemo.bpmn.util.DBUtil;
@@ -41,7 +41,7 @@ public class ErrorBoundaryEvent {
         // 部署流程定义
         RepositoryService repositoryService = processEngine.getRepositoryService();
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("constructs/reviewSalesLead.bpmn20.xml")
+                .addClasspathResource("constructs/gateway/reviewSalesLead.bpmn20.xml")
                 .deploy();
         // 启动流程实例
         Map<String, Object> variables = new HashMap<>(16);

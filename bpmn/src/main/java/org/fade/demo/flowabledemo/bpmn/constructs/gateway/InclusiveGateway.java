@@ -1,4 +1,4 @@
-package org.fade.demo.flowabledemo.bpmn.constructs;
+package org.fade.demo.flowabledemo.bpmn.constructs.gateway;
 
 import org.fade.demo.flowabledemo.bpmn.util.DBUtil;
 import org.flowable.engine.*;
@@ -34,7 +34,7 @@ public class InclusiveGateway {
         // 部署流程定义
         RepositoryService repositoryService = processEngine.getRepositoryService();
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("constructs/inclusiveGateway.bpmn20.xml")
+                .addClasspathResource("constructs/gateway/inclusiveGateway.bpmn20.xml")
                 .deploy();
         // 设置流程变量并启动流程实例
         RuntimeService runtimeService = processEngine.getRuntimeService();

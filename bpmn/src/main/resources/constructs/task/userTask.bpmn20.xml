@@ -1,0 +1,27 @@
+<definitions id="definitions"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="Examples">
+
+    <process id="userTask">
+
+        <startEvent id="start" />
+
+        <sequenceFlow sourceRef="start" targetRef="theTask" />
+
+<!--        <userTask id="theTask" name="Important task" />-->
+
+        <!--验证定义描述-->
+        <userTask id="theTask" name="Important task">
+            <documentation>
+                This is very important task!
+            </documentation>
+        </userTask>
+
+        <sequenceFlow sourceRef="theTask" targetRef="end" />
+
+        <endEvent id="end" />
+
+    </process>
+
+</definitions>
