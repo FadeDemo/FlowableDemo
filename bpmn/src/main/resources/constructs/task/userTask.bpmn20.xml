@@ -12,11 +12,63 @@
 <!--        <userTask id="theTask" name="Important task" />-->
 
         <!--验证定义描述-->
-        <userTask id="theTask" name="Important task">
-            <documentation>
-                This is very important task!
-            </documentation>
-        </userTask>
+<!--        <userTask id="theTask" name="Important task">-->
+<!--            <documentation>-->
+<!--                This is very important task!-->
+<!--            </documentation>-->
+<!--        </userTask>-->
+
+        <!--验证设置到期时间 -->
+        <!--null或通过TaskService设置的到期时间-->
+<!--        <userTask id="theTask" name="Important task"/>-->
+        <!-- ISO8601 格式日期 -->
+<!--        <userTask id="theTask" name="Important task" flowable:dueDate="2021-10-23"/>-->
+        <!-- ISO8601 格式日期时间 -->
+<!--        <userTask id="theTask" name="Important task" flowable:dueDate="2021-10-23T23:00:00"/>-->
+        <!-- ISO8601 格式时间段 -->
+<!--        <userTask id="theTask" name="Important task" flowable:dueDate="PT20M"/>-->
+        <!-- java.util.Date 格式时间，需在流程变量里设置-->
+<!--        <userTask id="theTask" name="Important task" flowable:dueDate="#{dueDate}"/>-->
+        <!--通过TaskListener设置或修改到期时间-->
+<!--        <userTask id="theTask" name="Important task">-->
+<!--        <userTask id="theTask" name="Important task" flowable:dueDate="PT10M">-->
+<!--            <extensionElements>-->
+<!--                <flowable:taskListener event="create" class="org.fade.demo.flowabledemo.bpmn.constructs.task.DueDateTaskListener" />-->
+<!--            </extensionElements>-->
+<!--        </userTask>-->
+
+        <!--验证任务分配-->
+        <!--直接分配给一个用户-->
+        <!--通过humanPerformer子标签直接分配给一个用户-->
+<!--        <userTask id="theTask" name="Important task">-->
+<!--            <humanPerformer>-->
+<!--                <resourceAssignmentExpression>-->
+<!--                    <formalExpression>kermit</formalExpression>-->
+<!--                </resourceAssignmentExpression>-->
+<!--            </humanPerformer>-->
+<!--        </userTask>-->
+        <!--通过flowable:assignee直接分配给一个用户-->
+<!--        <userTask id="theTask" name="Important task" flowable:assignee="kermit" />-->
+        <!--通过流程变量指定flowable:assignee-->
+<!--        <userTask id="theTask" name="Important task" flowable:assignee="#{assignee}" />-->
+        <!--作为候选任务分配给用户或组-->
+        <!--通过potentialOwner子标签作为候选任务分配给用户或组-->
+<!--        <userTask id="theTask" name="Important task">-->
+<!--            <potentialOwner>-->
+<!--                <resourceAssignmentExpression>-->
+<!--                    <formalExpression>user(kermit), group(management)</formalExpression>-->
+<!--                    &lt;!&ndash;验证默认是组&ndash;&gt;-->
+<!--&lt;!&ndash;                    <formalExpression>management</formalExpression>&ndash;&gt;-->
+<!--                </resourceAssignmentExpression>-->
+<!--            </potentialOwner>-->
+<!--        </userTask>-->
+        <!--通过flowable提供的扩展作为候选任务分配给用户或组-->
+<!--        <userTask id="theTask" name="Important task" flowable:candidateUsers="kermit" />-->
+<!--        <userTask id="theTask" name="Important task" flowable:candidateGroups="management" />-->
+<!--        <userTask id="theTask" name="Important task" flowable:candidateUsers="kermit" flowable:candidateGroups="management" />-->
+        <!--验证同时直接分配和作为候选任务分配给用户或组-->
+<!--        <userTask id="theTask" name="Important task" flowable:assignee="kermit" flowable:candidateUsers="kermit" flowable:candidateGroups="management" />-->
+        <userTask id="theTask" name="Important task"/>
 
         <sequenceFlow sourceRef="theTask" targetRef="end" />
 
