@@ -68,7 +68,14 @@
 <!--        <userTask id="theTask" name="Important task" flowable:candidateUsers="kermit" flowable:candidateGroups="management" />-->
         <!--验证同时直接分配和作为候选任务分配给用户或组-->
 <!--        <userTask id="theTask" name="Important task" flowable:assignee="kermit" flowable:candidateUsers="kermit" flowable:candidateGroups="management" />-->
-        <userTask id="theTask" name="Important task"/>
+        <!--验证通过TaskListener设置或修改任务分配情况-->
+<!--        <userTask id="theTask" name="Important task">-->
+<!--            <extensionElements>-->
+<!--                <flowable:taskListener event="create" class="org.fade.demo.flowabledemo.bpmn.constructs.task.TaskAssignListener" />-->
+<!--            </extensionElements>-->
+<!--        </userTask>-->
+
+        <userTask id="theTask" name="Important task" />
 
         <sequenceFlow sourceRef="theTask" targetRef="end" />
 
