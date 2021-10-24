@@ -1,18 +1,14 @@
-package org.fade.demo.flowabledemo.bpmn.constructs.task;
+package org.fade.demo.flowabledemo.bpmn.constructs.task.usertask;
 
-import cn.hutool.core.lang.Assert;
 import org.fade.demo.flowabledemo.bpmn.util.DBUtil;
 import org.flowable.engine.*;
-import org.flowable.engine.delegate.TaskListener;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
-import org.flowable.task.service.delegate.DelegateTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,7 +81,12 @@ public class UserTask {
 //        candidateUserTask = taskService.createTaskQuery().taskCandidateUser("management").singleResult();
 //        Assert.notNull(candidateUserTask, "默认是组");
 
-        
+        //验证自定义IdentityLinkType
+//        taskService.addUserIdentityLink(task.getId(), "kermit", MyIdentityLinkType.ADMINISTRATOR);
+//        List<IdentityLink> identityLinksForTask = taskService.getIdentityLinksForTask(task.getId());
+//        logger.info(identityLinksForTask.toString());
+
+
     }
 
 }

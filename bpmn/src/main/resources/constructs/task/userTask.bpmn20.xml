@@ -33,7 +33,7 @@
 <!--        <userTask id="theTask" name="Important task">-->
 <!--        <userTask id="theTask" name="Important task" flowable:dueDate="PT10M">-->
 <!--            <extensionElements>-->
-<!--                <flowable:taskListener event="create" class="org.fade.demo.flowabledemo.bpmn.constructs.task.DueDateTaskListener" />-->
+<!--                <flowable:taskListener event="create" class="org.fade.demo.flowabledemo.bpmn.constructs.task.usertask.DueDateTaskListener" />-->
 <!--            </extensionElements>-->
 <!--        </userTask>-->
 
@@ -71,7 +71,18 @@
         <!--验证通过TaskListener设置或修改任务分配情况-->
 <!--        <userTask id="theTask" name="Important task">-->
 <!--            <extensionElements>-->
-<!--                <flowable:taskListener event="create" class="org.fade.demo.flowabledemo.bpmn.constructs.task.TaskAssignListener" />-->
+<!--                <flowable:taskListener event="create" class="org.fade.demo.flowabledemo.bpmn.constructs.task.usertask.TaskAssignListener" />-->
+<!--            </extensionElements>-->
+<!--        </userTask>-->
+
+        <!--验证自定义IdentityLinkType-->
+<!--        <userTask id="theTask" name="Important task">-->
+<!--            <extensionElements>-->
+<!--                <flowable:customResource flowable:name="businessAdministrator">-->
+<!--                    <resourceAssignmentExpression>-->
+<!--                        <formalExpression>user(kermit), group(management)</formalExpression>-->
+<!--                    </resourceAssignmentExpression>-->
+<!--                </flowable:customResource>-->
 <!--            </extensionElements>-->
 <!--        </userTask>-->
 

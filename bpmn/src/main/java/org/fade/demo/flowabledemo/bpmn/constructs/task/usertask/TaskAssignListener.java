@@ -1,4 +1,4 @@
-package org.fade.demo.flowabledemo.bpmn.constructs.task;
+package org.fade.demo.flowabledemo.bpmn.constructs.task.usertask;
 
 import org.flowable.engine.delegate.TaskListener;
 import org.flowable.task.service.delegate.DelegateTask;
