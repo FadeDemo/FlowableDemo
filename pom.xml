@@ -34,6 +34,7 @@
         <mysql-version>8.0.26</mysql-version>
         <hutool-version>5.7.13</hutool-version>
         <assertj-version>3.21.0</assertj-version>
+        <kotlin-version>1.5.31</kotlin-version>
     </properties>
 
     <dependencyManagement>
@@ -148,6 +149,13 @@
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
                 <version>${assertj-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-scripting-jsr223</artifactId>
+                <version>${kotlin-version}</version>
+                <scope>runtime</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

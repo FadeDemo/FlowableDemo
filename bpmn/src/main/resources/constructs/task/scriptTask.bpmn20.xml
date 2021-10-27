@@ -1,0 +1,84 @@
+<definitions id="definitions"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="Examples">
+
+    <process id="scriptTask">
+
+        <startEvent id="start" />
+
+        <sequenceFlow sourceRef="start" targetRef="theTask" />
+
+        <!--测试JDK默认支持的脚本语言-->
+        <!--测试JavaScript-->
+        <!--测试手动设置流程变量-->
+<!--        <scriptTask id="theTask" name="Important task" scriptFormat="JavaScript">-->
+<!--            <script>-->
+<!--                var test = 0-->
+<!--                test++;-->
+<!--                execution.setVariable("test", test)-->
+<!--            </script>-->
+<!--        </scriptTask>-->
+        <!--测试自动设置流程变量-->
+        <!--不起作用-->
+<!--        <scriptTask id="theTask" name="Important task" scriptFormat="JavaScript" flowable:autoStoreVariables="true">-->
+<!--            <script>-->
+<!--                var test = 0-->
+<!--                test++;-->
+<!--            </script>-->
+<!--        </scriptTask>-->
+        <!--测试脚本中使用流程变量-->
+<!--        <scriptTask id="theTask" name="Important task" scriptFormat="JavaScript">-->
+<!--            <script>-->
+<!--                execution.setVariable("test", count)-->
+<!--            </script>-->
+<!--        </scriptTask>-->
+        <!--测试保存脚本执行结果-->
+        <!--
+            flowable:resultVariable和flowable:resultVariableName都可以使用
+            前者一般只用于脚本任务
+            后者一般只用于服务任务
+        -->
+<!--        <scriptTask id="theTask" name="Important task" scriptFormat="JavaScript" flowable:resultVariable="test">-->
+<!--&lt;!&ndash;        <scriptTask id="theTask" name="Important task" scriptFormat="JavaScript" flowable:resultVariableName="test">&ndash;&gt;-->
+<!--            <script>-->
+<!--                var test = 1-->
+<!--                test++-->
+<!--                test-->
+<!--            </script>-->
+<!--        </scriptTask>-->
+        <!--验证JUEL-->
+<!--        <scriptTask id="theTask" name="Important task" scriptFormat="juel" flowable:resultVariable="test">-->
+<!--            <script>#{count}</script>-->
+<!--        </scriptTask>-->
+
+        <!--测试兼容JSR-223的脚本语言-->
+        <!--测试kotlin-->
+<!--        <scriptTask id="theTask" name="Important task" scriptFormat="kotlin">-->
+<!--            <script>-->
+<!--                println("hello world")-->
+<!--            </script>-->
+<!--        </scriptTask>-->
+
+        <!--测试能否使用保留字作为流程变量名-->
+        <!--不受关键字影响-->
+<!--        <scriptTask id="theTask" name="Important task" scriptFormat="kotlin" flowable:resultVariable="out">-->
+<!--            <script>-->
+<!--                println("hello world")-->
+<!--            </script>-->
+<!--        </scriptTask>-->
+        <scriptTask id="theTask" name="Important task" scriptFormat="javascript" flowable:resultVariable="out:print">
+            <script>
+                var out = 1
+                out++
+                out
+            </script>
+        </scriptTask>
+
+        <sequenceFlow sourceRef="theTask" targetRef="end" />
+
+        <endEvent id="end" />
+
+    </process>
+
+</definitions>
