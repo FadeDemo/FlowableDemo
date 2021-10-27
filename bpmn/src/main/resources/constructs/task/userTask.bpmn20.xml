@@ -86,7 +86,11 @@
 <!--            </extensionElements>-->
 <!--        </userTask>-->
 
-        <userTask id="theTask" name="Important task" />
+        <!--检验Spring环境用户任务分配-->
+        <!--直接分配给一个用户-->
+<!--        <userTask id="theTask" name="Important task" flowable:assignee="${ldapService.findManagerForEmployee(emp)}" />-->
+        <!--作为候选任务分配-->
+        <userTask id="theTask" name="Important task" flowable:candidateUsers="${ldapService.findAllSales()}" />
 
         <sequenceFlow sourceRef="theTask" targetRef="end" />
 

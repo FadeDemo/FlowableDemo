@@ -9,12 +9,17 @@ import java.util.List;
  */
 public class FakeLdapService {
 
+    private static final List<String> RESOURCES = Arrays.asList("kermit", "gonzo", "fozzie");
+
     public String findManagerForEmployee(String employee) {
-        return "Kermit The Frog";
+        if (RESOURCES.contains(employee)) {
+            return RESOURCES.get(RESOURCES.indexOf(employee));
+        }
+        throw new RuntimeException("用户不存在");
     }
 
     public List<String> findAllSales() {
-        return Arrays.asList("kermit", "gonzo", "fozzie");
+        return RESOURCES;
     }
 
 }
