@@ -13,7 +13,10 @@
         <!--测试JavaDelegate-->
 <!--        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.ToUppercase" />-->
         <!--测试FutureJavaDelegate-->
-        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.LongRunningFutureJavaDelegate" />
+<!--        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.LongRunningFutureJavaDelegate" />-->
+
+        <!--测试通过flowable:delegateExpression调用Java逻辑-->
+        <serviceTask id="theTask" name="Important task" flowable:delegateExpression="toUppercase" />
 
         <sequenceFlow sourceRef="theTask" targetRef="end" />
 

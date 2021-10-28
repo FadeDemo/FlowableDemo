@@ -5,11 +5,15 @@ import org.flowable.engine.delegate.JavaDelegate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
+
 /**
  * @author fade
  * @date 2021/10/28
  */
-public class ToUppercase implements JavaDelegate {
+// fixme 报错
+public class ToUppercase implements JavaDelegate, Serializable {
+//public class ToUppercase implements JavaDelegate {
 
     private static final Logger logger = LoggerFactory.getLogger(ToUppercase.class);
 
