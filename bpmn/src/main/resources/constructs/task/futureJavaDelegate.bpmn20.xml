@@ -1,0 +1,37 @@
+<definitions id="definitions"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="Examples">
+
+    <process id="futureJavaDelegate">
+
+        <startEvent id="start" />
+
+        <sequenceFlow sourceRef="start" targetRef="fork" />
+
+        <parallelGateway id="fork" />
+
+        <sequenceFlow sourceRef="fork" targetRef="longRunningJavaDelegate" />
+
+        <!--真并行-->
+<!--        <serviceTask id="longRunningJavaDelegate" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.LongRunningFutureJavaDelegate" />-->
+        <!--假并行-->
+        <serviceTask id="longRunningJavaDelegate" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.LongRunningJavaDelegate" />
+
+        <sequenceFlow sourceRef="longRunningJavaDelegate" targetRef="join" />
+
+        <sequenceFlow sourceRef="fork" targetRef="toUpperCase" />
+
+        <serviceTask id="toUpperCase" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.ToUppercase" />
+
+        <sequenceFlow sourceRef="toUpperCase" targetRef="join" />
+
+        <parallelGateway id="join" />
+
+        <sequenceFlow sourceRef="join" targetRef="end" />
+
+        <endEvent id="end" />
+
+    </process>
+
+</definitions>

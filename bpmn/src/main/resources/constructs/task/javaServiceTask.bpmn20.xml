@@ -1,0 +1,24 @@
+<definitions id="definitions"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="Examples">
+
+    <process id="javaServiceTask">
+
+        <startEvent id="start" />
+
+        <sequenceFlow sourceRef="start" targetRef="theTask" />
+
+        <!--测试通过flowable:class调用Java逻辑-->
+        <!--测试JavaDelegate-->
+<!--        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.ToUppercase" />-->
+        <!--测试FutureJavaDelegate-->
+        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.LongRunningFutureJavaDelegate" />
+
+        <sequenceFlow sourceRef="theTask" targetRef="end" />
+
+        <endEvent id="end" />
+
+    </process>
+
+</definitions>
