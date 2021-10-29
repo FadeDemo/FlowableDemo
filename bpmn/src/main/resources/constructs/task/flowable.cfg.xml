@@ -41,4 +41,8 @@
 
     <bean id="ldapService" class="org.fade.demo.flowabledemo.bpmn.constructs.task.usertask.FakeLdapService" />
 
+    <bean id="toUppercase" class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.ToUppercase" />
+
+    <bean id="normal" class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.Normal" />
+
 </beans>

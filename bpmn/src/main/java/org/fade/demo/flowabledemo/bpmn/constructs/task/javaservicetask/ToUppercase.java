@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author fade
  * @date 2021/10/28
  */
-// fixme 报错
+// 测试通过flowable:delegateExpression调用Java逻辑(流程变量的方式)
 public class ToUppercase implements JavaDelegate, Serializable {
 //public class ToUppercase implements JavaDelegate {
 

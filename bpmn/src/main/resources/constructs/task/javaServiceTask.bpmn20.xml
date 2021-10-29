@@ -16,7 +16,11 @@
 <!--        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.LongRunningFutureJavaDelegate" />-->
 
         <!--测试通过flowable:delegateExpression调用Java逻辑-->
-        <serviceTask id="theTask" name="Important task" flowable:delegateExpression="toUppercase" />
+<!--        <serviceTask id="theTask" name="Important task" flowable:delegateExpression="#{toUppercase}" />-->
+
+        <!--测试通过flowable:expression调用Java逻辑-->
+        <!--方法表达式方式-->
+        <serviceTask id="theTask" name="Important task" flowable:expression="#{normal.execute(execution)}" />
 
         <sequenceFlow sourceRef="theTask" targetRef="end" />
 

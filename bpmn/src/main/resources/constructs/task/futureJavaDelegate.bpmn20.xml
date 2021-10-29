@@ -16,7 +16,9 @@
         <!--真并行-->
 <!--        <serviceTask id="longRunningJavaDelegate" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.LongRunningFutureJavaDelegate" />-->
         <!--假并行-->
-        <serviceTask id="longRunningJavaDelegate" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.LongRunningJavaDelegate" />
+<!--        <serviceTask id="longRunningJavaDelegate" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.LongRunningJavaDelegate" />-->
+        <!--测试flowable:expression调用的方法返回CompletableFuture<?>-->
+        <serviceTask id="longRunningJavaDelegate" name="Important task" flowable:expression="normal.longTimeExecute(execution)" />
 
         <sequenceFlow sourceRef="longRunningJavaDelegate" targetRef="join" />
 
