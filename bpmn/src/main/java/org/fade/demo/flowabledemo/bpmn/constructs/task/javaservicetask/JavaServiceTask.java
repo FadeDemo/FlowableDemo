@@ -58,8 +58,8 @@ public class JavaServiceTask {
 //        ToUppercase toUppercase = new ToUppercase();
 //        variables.put("toUppercase", toUppercase);
         // 测试通过flowable:expression调用Java逻辑
-        Normal normal = new Normal();
-        variables.put("normal", normal);
+//        Normal normal = new Normal();
+//        variables.put("normal", normal);
         ProcessInstance pi = runtimeService.startProcessInstanceByKey("javaServiceTask", variables);
         // 测试FutureJavaDelegate并行执行
 //        ProcessInstance pi = runtimeService.startProcessInstanceByKey("futureJavaDelegate", variables);
