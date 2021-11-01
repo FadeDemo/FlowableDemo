@@ -17,7 +17,7 @@
         <!--测试FutureJavaDelegate子类FlowableFutureJavaDelegate-->
 <!--        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.FlowableFutureJavaDelegateExample" />-->
         <!--测试FutureJavaDelegate子类MapBasedFlowableFutureJavaDelegate-->
-        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.MapBasedFlowableFutureJavaDelegateExample" />
+<!--        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.MapBasedFlowableFutureJavaDelegateExample" />-->
 
         <!--测试通过flowable:delegateExpression调用Java逻辑-->
 <!--        <serviceTask id="theTask" name="Important task" flowable:delegateExpression="#{toUppercase}" />-->
@@ -25,6 +25,24 @@
         <!--测试通过flowable:expression调用Java逻辑-->
         <!--方法表达式方式-->
 <!--        <serviceTask id="theTask" name="Important task" flowable:expression="#{normal.execute(execution)}" />-->
+
+        <!--测试字段注入-->
+        <serviceTask id="theTask" name="Important task" flowable:class="org.fade.demo.flowabledemo.bpmn.constructs.task.javaservicetask.FieldInjectDelegate">
+            <extensionElements>
+                <!--测试注入字符串常量-->
+<!--                <flowable:field name="text" stringValue="abcDEFghi" />-->
+                <!--测试通过flowable:string子标签代替stringValue属性-->
+<!--                <flowable:field name="text">-->
+<!--                    <flowable:string>abcDEFghi</flowable:string>-->
+<!--                </flowable:field>-->
+                <!--测试注入表达式-->
+<!--                <flowable:field name="text" expression="#{input}" />-->
+                <!--测试通过flowable:expression子标签代替expression属性-->
+                <flowable:field name="text">
+                    <flowable:expression>#{input}</flowable:expression>
+                </flowable:field>
+            </extensionElements>
+        </serviceTask>
 
         <sequenceFlow sourceRef="theTask" targetRef="end" />
 
