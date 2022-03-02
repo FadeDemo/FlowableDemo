@@ -22,7 +22,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <flowable-version>6.7.0</flowable-version>
-        <h2-version>1.4.200</h2-version>
+        <h2-version>2.1.210</h2-version>
         <sl4j-version>1.7.32</sl4j-version>
         <jackson-version>2.12.5</jackson-version>
         <druid-version>1.2.7</druid-version>
