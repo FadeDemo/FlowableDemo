@@ -64,7 +64,7 @@ public class HolidayRequest {
 
         RuntimeService runtimeService = processEngine.getRuntimeService();
 
-        Map<String, Object> variables = new HashMap<String, Object>();
+        Map<String, Object> variables = new HashMap<>(16);
         variables.put("employee", employee);
         variables.put("nrOfHolidays", nrOfHolidays);
         variables.put("description", description);
@@ -81,22 +81,22 @@ public class HolidayRequest {
             logger.info((i+1) + ") " + tasks.get(i).getName());
         }
         System.out.println("Which task would you like to complete?");
-        int taskIndex = Integer.valueOf(scanner.nextLine());
+        int taskIndex = Integer.parseInt(scanner.nextLine());
         Task task = tasks.get(taskIndex - 1);
         Map<String, Object> processVariables = taskService.getVariables(task.getId());
         logger.info(processVariables.get("employee") + " wants " +
                 processVariables.get("nrOfHolidays") + " of holidays. Do you approve this?");
-        boolean approved = scanner.nextLine().toLowerCase().equals("y");
-        variables = new HashMap<String, Object>();
+        boolean approved = "y".equalsIgnoreCase(scanner.nextLine());
+        variables = new HashMap<>(16);
         variables.put("approved", approved);
         taskService.complete(task.getId(), variables);
 
         List<Task> taskList = taskService.createTaskQuery().taskAssignee(employee).list();
-        for (int i=0; i<taskList.size(); i++) {
-            if (taskList.get(i).getTaskDefinitionKey().equals("holidayApprovedTask")) {
+        for (Task value : taskList) {
+            if ("holidayApprovedTask".equals(value.getTaskDefinitionKey())) {
                 logger.info("employee " + employee + ", your holiday request had been approved");
             }
-            taskService.complete(taskList.get(i).getId());
+            taskService.complete(value.getId());
         }
 
         /*********************************************************/

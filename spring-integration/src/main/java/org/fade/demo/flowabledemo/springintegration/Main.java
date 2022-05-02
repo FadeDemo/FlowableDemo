@@ -40,7 +40,7 @@ public class Main {
         System.out.println("Why do you need them?");
         String description = scanner.nextLine();
         RuntimeService runtimeService = applicationContext.getBean("runtimeService", RuntimeService.class);
-        Map<String, Object> variables = new HashMap<String, Object>();
+        Map<String, Object> variables = new HashMap<>(16);
         variables.put("employee", employee);
         variables.put("nrOfHolidays", nrOfHolidays);
         variables.put("description", description);
@@ -58,14 +58,14 @@ public class Main {
         Map<String, Object> processVariables = taskService.getVariables(task.getId());
         logger.info(processVariables.get("employee") + " wants " +
                 processVariables.get("nrOfHolidays") + " of holidays. Do you approve this?");
-        boolean approved = scanner.nextLine().toLowerCase().equals("y");
-        variables = new HashMap<String, Object>();
+        boolean approved = "y".equals(scanner.nextLine().toLowerCase());
+        variables = new HashMap<>(16);
         variables.put("approved", approved);
         taskService.complete(task.getId(), variables);
 
         List<Task> taskList = taskService.createTaskQuery().taskAssignee(employee).list();
         for (int i=0; i<taskList.size(); i++) {
-            if (taskList.get(i).getTaskDefinitionKey().equals("holidayApprovedTask")) {
+            if ("holidayApprovedTask".equals(taskList.get(i).getTaskDefinitionKey())) {
                 logger.info("employee " + employee + ", your holiday request had been approved");
             }
             taskService.complete(taskList.get(i).getId());
