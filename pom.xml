@@ -24,7 +24,7 @@
         <flowable-version>6.7.0</flowable-version>
         <h2-version>2.1.210</h2-version>
         <sl4j-version>1.7.32</sl4j-version>
-        <jackson-version>2.12.6.1</jackson-version>
+        <jackson-version>2.13.4.1</jackson-version>
         <druid-version>1.2.7</druid-version>
         <junit5-version>5.8.1</junit5-version>
         <junit4-version>4.13.1</junit4-version>
